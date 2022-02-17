@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Cat Details</h1>
+
+<div class="row">
+    <div class="col s6">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{ plant.name }}</span>
+                <p>Waterings: {{ plant.waterings }}</p>
+                <p>Sunlight: {{ plant.sunlight }}</p>
+                <p>Description: {{ plant.description }}</p>
+            </div>
+            <div class="card-action">
+                <a href="{% url 'update_plants' plant.id %}">Edit</a>
+                <a href="{% url 'delete_plants' plant.id %}">Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

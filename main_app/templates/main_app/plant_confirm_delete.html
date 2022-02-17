@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Are you sure you want to remove {{oject.name}}</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <input class="btn red" type="submit" value="YES - Remove">
+    <a class="btn blue" href="{% url 'detail_plants' object.id %}">Cancel</a>
+</form>
+
+{% endblock %}
