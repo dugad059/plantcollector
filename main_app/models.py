@@ -9,10 +9,24 @@ WATERINGS = (
     ('D', 'Drain-out')
 )
 
+"""
+=============================
+      ADDITIVES MODELS
+=============================
+
+"""
+class Additive(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse('detail_additives', kwargs={'additive_id': self.id})
 
 """
 =============================
-      PLANTS Models
+      PLANTS MODELS
 =============================
 
 """
@@ -22,6 +36,7 @@ class Plant(models.Model):
     waterings =  models.CharField(max_length=100)
     sunlight = models.CharField(max_length=100)
     description = models.TextField(max_length=250)
+    additives = models.ManyToManyField(Additive)
 
     def __str__(self):
         return self.name
@@ -29,9 +44,9 @@ class Plant(models.Model):
     def get_absolute_url(self):
         return reverse('detail_plants', kwargs={'plant_id': self.id})
 
-    """
+"""
 =============================
-      WATERING ROUTES
+      WATERING MODELS
 =============================
 
 """
@@ -44,5 +59,6 @@ class Watering(models.Model):
 
     def __str__(self):
         return f"{self.get_amount_display()} on {self.date}"
+
 
     
